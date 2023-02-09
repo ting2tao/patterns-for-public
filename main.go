@@ -3,10 +3,12 @@ package main
 import (
 	"fmt"
 	"github.com/slovty/patterns-for-public/pattern"
+	"github.com/slovty/patterns-for-public/pattern/observer"
 	"github.com/slovty/patterns-for-public/singleton"
 )
 
 func main() {
+	Observer()
 	Factory()
 	Singleton()
 }
@@ -29,4 +31,10 @@ func Singleton() {
 	fmt.Println("单例模式")
 	singleton.ClientOnce()
 	singleton.ClientLock()
+}
+
+func Observer() {
+	fmt.Println("观察者模式")
+	observer.ObserverClient()
+
 }

@@ -4,11 +4,11 @@ type ObInterface interface {
 	ObserverPattern()
 }
 
-func ObserverPattern() {
+func ObserverClient() {
 	shirtItem := NewItem("Nike Shirt")
 
-	observerFirst := &Customer{id: "abc@gmail.com"}
-	observerSecond := &Customer{id: "xyz@gmail.com"}
+	observerFirst := &Customer{id: "sct@gmail.com"}
+	observerSecond := &Customer{id: "hwt@gmail.com"}
 
 	shirtItem.register(observerFirst)
 	shirtItem.register(observerSecond)
