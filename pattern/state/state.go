@@ -1,4 +1,4 @@
-package main
+package state
 
 type State interface {
 	addItem(count int) error     //添加货物

@@ -1,4 +1,4 @@
-package main
+package state
 
 import (
 	"fmt"
@@ -43,19 +43,19 @@ func NewVendingMachine(itemCount, itemPrice int) *VendingMachine {
 	return v
 }
 
-func (v *VendingMachine) requestItem() error {
+func (v *VendingMachine) RequestItem() error {
 	return v.currentState.requestItem()
 }
 
-func (v *VendingMachine) addItem(count int) error {
+func (v *VendingMachine) AddItem(count int) error {
 	return v.currentState.addItem(count)
 }
 
-func (v *VendingMachine) insertMoney(money int) error {
+func (v *VendingMachine) InsertMoney(money int) error {
 	return v.currentState.insertMoney(money)
 }
 
-func (v *VendingMachine) dispenseItem() error {
+func (v *VendingMachine) DispenseItem() error {
 	return v.currentState.dispenseItem()
 }
 
@@ -71,41 +71,41 @@ func (v *VendingMachine) incrementItemCount(count int) {
 func main() {
 	vendingMachine := NewVendingMachine(1, 10)
 
-	err := vendingMachine.requestItem()
+	err := vendingMachine.RequestItem()
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
 
-	err = vendingMachine.insertMoney(10)
+	err = vendingMachine.InsertMoney(10)
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
 
-	err = vendingMachine.dispenseItem()
-	if err != nil {
-		log.Fatalf(err.Error())
-	}
-
-	fmt.Println()
-
-	err = vendingMachine.addItem(2)
+	err = vendingMachine.DispenseItem()
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
 
 	fmt.Println()
 
-	err = vendingMachine.requestItem()
+	err = vendingMachine.AddItem(2)
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
 
-	err = vendingMachine.insertMoney(10)
+	fmt.Println()
+
+	err = vendingMachine.RequestItem()
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
 
-	err = vendingMachine.dispenseItem()
+	err = vendingMachine.InsertMoney(10)
+	if err != nil {
+		log.Fatalf(err.Error())
+	}
+
+	err = vendingMachine.DispenseItem()
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
