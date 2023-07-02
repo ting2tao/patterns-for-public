@@ -6,6 +6,7 @@ import (
 	"github.com/slovty/patterns-for-public/pattern"
 	"github.com/slovty/patterns-for-public/pattern/observer"
 	"github.com/slovty/patterns-for-public/pattern/state"
+	"github.com/slovty/patterns-for-public/pattern/strategy"
 	"github.com/slovty/patterns-for-public/singleton"
 	"log"
 )
@@ -26,6 +27,8 @@ func main() {
 		Singleton()
 	case "State":
 		State()
+	case "Strategy":
+		Strategy()
 	default:
 		fmt.Println("No pattern has imp")
 	}
@@ -100,4 +103,24 @@ func State() {
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
+}
+
+func Strategy() {
+	lfu := &strategy.Lfu{}
+	cache := strategy.InitCache(lfu)
+
+	cache.Add("a", "1")
+	cache.Add("b", "2")
+
+	cache.Add("c", "3")
+
+	lru := &strategy.Lru{}
+	cache.SetEvictionAlgo(lru)
+
+	cache.Add("d", "4")
+
+	fifo := &strategy.Fifo{}
+	cache.SetEvictionAlgo(fifo)
+
+	cache.Add("e", "5")
 }
